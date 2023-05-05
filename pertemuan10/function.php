@@ -6,7 +6,9 @@ function koneksi() {
 }
 	
 function query($query) {
-	$hasil = mysqli_query(koneksi(), $query);
+	$koneksi = koneksi();
+
+	$hasil = mysqli_query($koneksi, $query);
 
 	// Jika data hanya 1 row 
 	if (mysqli_num_rows($hasil) == 1) {
