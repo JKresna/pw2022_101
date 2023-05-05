@@ -37,9 +37,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 		<tr>
 			<td><?= $i++; ?></td>
 			<td class="img">
-				<img src="img/<?= $m['gambar']; ?>" alt="Gambar <?= $m['nama']; ?>">
+				<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
 			</td>
-			<td><?= $m["nama"]; ?></td>
+			<td><?= htmlspecialchars($m["nama"]); ?></td>
 			<td>
 				<a href="detail.php?id=<?= $m['id'] ?>">Lihat Detail</a>
 			</td>

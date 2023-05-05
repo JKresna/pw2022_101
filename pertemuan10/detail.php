@@ -31,12 +31,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa WHERE id='$id'");
 
 	<ul>
 		<li>
-			<img src="img/<?= $mahasiswa['gambar']; ?>" alt="Gambar <?= $mahasiswa['nama']; ?>">
+			<img src="img/<?= htmlspecialchars($mahasiswa['gambar']); ?>" alt="Gambar <?= htmlspecialchars($mahasiswa['nama']); ?>">
 		</li>
-		<li>Nama : <?= $mahasiswa["nama"]; ?></li>
-		<li>NRP : <?= $mahasiswa["nrp"]; ?></li>
-		<li>Email : <?= $mahasiswa["email"]; ?></li>
-		<li>Jurusan : <?= $mahasiswa["jurusan"]; ?></li>
+		<li>Nama : <?= htmlspecialchars($mahasiswa["nama"]); ?></li>
+		<li>NRP : <?= htmlspecialchars($mahasiswa["nrp"]); ?></li>
+		<li>Email : <?= htmlspecialchars($mahasiswa["email"]); ?></li>
+		<li>Jurusan : <?= htmlspecialchars($mahasiswa["jurusan"]); ?></li>
 		<li>
 			<a href="#">Ubah</a> | <a href="#">Hapus</a>
 		</li>
