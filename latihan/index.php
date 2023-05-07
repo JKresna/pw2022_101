@@ -13,6 +13,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 </head>
 <body>
 
+	<h1>Daftar Mahasiswa</h1>
+
 	<table>
 		<thead>
 			<tr>
