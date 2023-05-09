@@ -35,14 +35,15 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 	<br><br>
 
 	<table>
+
 		<?php $i = 1;
 			foreach($mahasiswa as $m) : ?>
 		<tr>
 			<td><?= $i++; ?></td>
 			<td class="img">
-				<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
+				<img src="img/<?= $m['gambar']; ?>" alt="Gambar <?= $m['nama']; ?>">
 			</td>
-			<td><?= htmlspecialchars($m["nama"]); ?></td>
+			<td><?= $m["nama"]; ?></td>
 			<td>
 				<a href="detail.php?id=<?= $m['id'] ?>">Lihat Detail</a>
 			</td>

@@ -1,7 +1,7 @@
 <?php 
 require "function.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 
 ?>
 <!DOCTYPE html>
@@ -47,12 +47,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 		<tr>
 			<td><?= $i++; ?></td>
 			<td class="img">
-				<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
+				<img src="img/<?= $m['gambar']; ?>" alt="Gambar <?= $m['nama']; ?>">
 			</td>
-			<td><?= htmlspecialchars($m["nrp"]); ?></td>
-			<td><?= htmlspecialchars($m["nama"]); ?></td>
-			<td><?= htmlspecialchars($m["email"]); ?></td>
-			<td><?= htmlspecialchars($m["jurusan"]); ?></td>
+			<td><?= $m["nrp"]; ?></td>
+			<td><?= $m["nama"]; ?></td>
+			<td><?= $m["email"]; ?></td>
+			<td><?= $m["jurusan"]; ?></td>
 			<td>
 				<a href="#">Ubah</a> | <a href="#">Hapus</a>
 			</td>

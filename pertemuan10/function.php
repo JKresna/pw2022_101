@@ -24,3 +24,22 @@ function query($query) {
 
 	return $rows;
 }
+
+function tambah($data) {
+	$koneksi = koneksi();
+
+	// Sanitasi data dari SQLi & XSS
+	$nama = mysqli_real_escape_string($koneksi, htmlspecialchars($data["nama"]));
+	$nrp = mysqli_real_escape_string($koneksi, htmlspecialchars($data["nrp"]));
+	$jurusan = mysqli_real_escape_string($koneksi, htmlspecialchars($data["jurusan"]));
+	$email = mysqli_real_escape_string($koneksi, htmlspecialchars($data["email"]));
+	$gambar = mysqli_real_escape_string($koneksi, htmlspecialchars($data["gambar"]));
+	
+	$query = sprintf("INSERT INTO mahasiswa VALUES(
+		NULL, '%s', '%s', '%s', '%s', '%s')",
+		$nama, $nrp, $email, $jurusan, $gambar);
+
+	mysqli_query($koneksi, $query);	
+
+	return mysqli_affected_rows($koneksi);
+}

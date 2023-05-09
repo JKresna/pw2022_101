@@ -1,8 +1,26 @@
 <?php 
 require "function.php";
 
-if (isset($_POST["tambah"])) {
-	var_dump($_POST);
+if (isset($_POST["tambah"]) && (
+		!empty($_POST["nama"]) &&
+		!empty($_POST["nrp"]) &&
+		!empty($_POST["email"]) &&
+		!empty($_POST["jurusan"]) &&
+		!empty($_POST["gambar"])
+	)) {
+	
+	if (tambah($_POST) > 0) {
+		echo "<script>
+				alert('Data berhasil ditambahkan!');
+				document.location.href = 'latihan2.php';
+		</script>";
+	} else {
+		echo "<script>
+				alert('Data gagal ditambahkan!');
+				document.location.href = 'latihan2.php';
+		</script>";	
+	}
+
 }
 ?>
 <!DOCTYPE html>
