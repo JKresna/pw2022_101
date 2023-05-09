@@ -1,7 +1,7 @@
 <?php 
 require "function.php";
 
-$mahasiswa = query("SELECT * FROM mahasiswa");
+$mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 
 ?>
 <!DOCTYPE html>
@@ -30,6 +30,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 <body>
 
 	<h1>Daftar Mahasiswa</h1>
+
+	<a href="tambah.php">Tambah Data Mahasiswa</a>
+	<br><br>
 
 	<table>
 		<?php $i = 1;
