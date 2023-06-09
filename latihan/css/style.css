@@ -13,6 +13,10 @@ a {
 	text-decoration: none;
 }
 
+a.tambah {
+	text-decoration: underline;
+}
+
 td img {
 	border-radius: 3px;
 	border: 1px solid #000;

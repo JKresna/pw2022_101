@@ -15,6 +15,9 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 
 	<h1>Daftar Mahasiswa</h1>
 
+	<a href="tambah.php" class="tambah">Tambah Mahasiswa</a>
+	<br><br>
+
 	<table>
 		<thead>
 			<tr>
