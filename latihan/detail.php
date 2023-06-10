@@ -35,7 +35,7 @@ $mhs = query("SELECT * FROM mahasiswa WHERE id='$id'");
 		<li>NRP : <?= htmlspecialchars($mhs["nrp"]); ?></li>
 		<li>Email : <?= htmlspecialchars($mhs["email"]); ?></li>
 		<li>
-			<a href="#">Ubah</a> | <a href="#">Hapus</a>
+			<a href="#">Ubah</a> | <a href="hapus.php?id=<?= $mhs['id']; ?>" onclick="return confirm('Yakin?');">Hapus</a>
 		</li>
 	</ul>
 

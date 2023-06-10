@@ -40,3 +40,13 @@ function tambah($data) {
 	mysqli_query($koneksi, $query);
 	return mysqli_affected_rows($koneksi);
 }
+
+function hapus($id) {
+	$koneksi = koneksi();
+
+	$id = mysqli_real_escape_string($koneksi, $id);
+	$query = "DELETE FROM mahasiswa WHERE id='$id'";
+
+	mysqli_query($koneksi, $query);
+	return mysqli_affected_rows($koneksi);
+}

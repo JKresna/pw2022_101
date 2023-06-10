@@ -43,7 +43,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 				<td><?= htmlspecialchars($mhs["jurusan"]); ?></td>
 				<td><?= htmlspecialchars($mhs["email"]); ?></td>
 				<td>
-					<a href="#">Ubah</a> | <a href="#">Hapus</a>
+					<a href="#">Ubah</a> | <a href="hapus.php?id=<?= $mhs['id']; ?>" onclick="return confirm('Yakin?');">Hapus</a>
 				</td>
 			</tr>
 		<?php endforeach; ?>
