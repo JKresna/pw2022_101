@@ -1,7 +1,26 @@
 <?php 
+require "functions.php";
 
-if (isset($_POST["tambah"])) {
-	var_dump($_POST);
+// Cek apakah tombol tambah sudah dipencet
+// dan semua field sudah di isi
+if (isset($_POST["tambah"]) && (
+		!empty($_POST["nama"]) &&
+		!empty($_POST["nrp"]) &&
+		!empty($_POST["email"]) &&
+		!empty($_POST["jurusan"]) &&
+		!empty($_POST["gambar"])
+	)) {
+	
+	if (tambah($_POST) > 0) {
+		echo "<script>
+			alert('Data berhasil ditambahkan!');
+			document.location.href = 'index2.php';
+		</script>";
+	} else {
+		echo "<script>
+			alert('Data gagal ditambahkan!');
+		</script>";
+	}
 }
 
 ?>
@@ -16,6 +35,10 @@ if (isset($_POST["tambah"])) {
 <body>
 
 <div class="form">
+
+	<h3>Tambah Mahasiswa</h3>
+	<hr>
+
 	<form method="post">
 		<label>Nama :
 			<input type="text" name="nama" placeholder="Masukan nama" autocomplete="off" required>
@@ -40,6 +63,8 @@ if (isset($_POST["tambah"])) {
 		<button type="submit" name="tambah">Tambah Data</button>
 	</form>
 </div>
+
+<a href="index2.php">Kembali</a>
 
 </body>
 </html>
