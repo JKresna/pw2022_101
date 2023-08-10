@@ -9,23 +9,8 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Daftar Mahasiswa</title>
-	<style>
-		table,th,td {
-			border-collapse: collapse;
-			border: 1px solid #000;		
-			padding: 10px;
-		}
-
-		img {
-			width: 50px;
-			height: 50px;
-		}
-
-		.img {
-			text-align: center;
-		}
-	</style>
 </head>
 <body>
 
@@ -47,12 +32,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 		<tr>
 			<td><?= $i++; ?></td>
 			<td class="img">
-				<img src="img/<?= $m['gambar']; ?>" alt="Gambar <?= $m['nama']; ?>">
+				<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
 			</td>
-			<td><?= $m["nrp"]; ?></td>
-			<td><?= $m["nama"]; ?></td>
-			<td><?= $m["email"]; ?></td>
-			<td><?= $m["jurusan"]; ?></td>
+			<td><?= htmlspecialchars($m["nrp"]); ?></td>
+			<td><?= htmlspecialchars($m["nama"]); ?></td>
+			<td><?= htmlspecialchars($m["email"]); ?></td>
+			<td><?= htmlspecialchars($m["jurusan"]); ?></td>
 			<td>
 				<a href="#">Ubah</a> | <a href="#">Hapus</a>
 			</td>

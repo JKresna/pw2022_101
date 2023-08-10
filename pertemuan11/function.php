@@ -28,12 +28,12 @@ function query($query) {
 function tambah($data) {
 	$koneksi = koneksi();
 
-	// Sanitasi data dari SQLi & XSS
-	$nama = mysqli_real_escape_string($koneksi, htmlspecialchars($data["nama"]));
-	$nrp = mysqli_real_escape_string($koneksi, htmlspecialchars($data["nrp"]));
-	$jurusan = mysqli_real_escape_string($koneksi, htmlspecialchars($data["jurusan"]));
-	$email = mysqli_real_escape_string($koneksi, htmlspecialchars($data["email"]));
-	$gambar = mysqli_real_escape_string($koneksi, htmlspecialchars($data["gambar"]));
+	// Sanitasi data dari SQLi
+	$nama = mysqli_real_escape_string($koneksi, $data["nama"]);
+	$nrp = mysqli_real_escape_string($koneksi, $data["nrp"]);
+	$jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
+	$email = mysqli_real_escape_string($koneksi, $data["email"]);
+	$gambar = mysqli_real_escape_string($koneksi, $data["gambar"]);
 	
 	$query = sprintf("INSERT INTO mahasiswa VALUES(
 		NULL, '%s', '%s', '%s', '%s', '%s')",
