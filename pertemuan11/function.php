@@ -25,6 +25,7 @@ function query($query) {
 	return $rows;
 }
 
+
 function tambah($data) {
 	$koneksi = koneksi();
 
@@ -40,6 +41,16 @@ function tambah($data) {
 		$nama, $nrp, $email, $jurusan, $gambar);
 
 	mysqli_query($koneksi, $query);	
+
+	return mysqli_affected_rows($koneksi);
+}
+
+
+function hapus($id) {
+	$koneksi = koneksi();
+	$id = mysqli_real_escape_string($koneksi, $id);
+	
+	mysqli_query($koneksi, "DELETE FROM mahasiswa WHERE id='$id'") or die(mysqli_error($koneksi));
 
 	return mysqli_affected_rows($koneksi);
 }
