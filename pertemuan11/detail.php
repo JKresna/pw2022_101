@@ -3,7 +3,7 @@ require "function.php";
 
 // Jika parameter id tidak ada
 if (!isset($_GET["id"])) {
-	header("Location: latihan2.php");
+	header("Location: index.php");
 }
 
 $id = mysqli_real_escape_string(koneksi(), $_GET["id"]);
@@ -44,7 +44,7 @@ $mahasiswa = query("SELECT * FROM mahasiswa WHERE id='$id'");
 
 	<br><br>
 
-	<a href="latihan2.php">Kembali ke Daftar Mahasiswa</a>
+	<a href="index.php">Kembali ke Daftar Mahasiswa</a>
 
 </body>
 </html>
