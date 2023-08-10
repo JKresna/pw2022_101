@@ -15,10 +15,7 @@ if (isset($_POST["tambah"]) && (
 				document.location.href = 'index.php';
 		</script>";
 	} else {
-		echo "<script>
-				alert('Data gagal ditambahkan!');
-				document.location.href = 'index.php';
-		</script>";	
+		echo "Data gagal ditambahkan!";	
 	}
 
 }

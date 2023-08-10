@@ -40,7 +40,7 @@ function tambah($data) {
 		NULL, '%s', '%s', '%s', '%s', '%s')",
 		$nama, $nrp, $email, $jurusan, $gambar);
 
-	mysqli_query($koneksi, $query);	
+	mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));	
 
 	return mysqli_affected_rows($koneksi);
 }
