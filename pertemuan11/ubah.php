@@ -4,6 +4,7 @@ require "function.php";
 
 if (!isset($_GET["id"])) {
 	header("Location: index.php");
+	exit;
 }
 
 // Ambil mahasiswa dengan id di URL
@@ -44,6 +45,8 @@ if (isset($_POST["ubah"]) && (
 		<h2>Ubah Mahasiswa</h2>
 		<hr>
 		<form method="post">
+			<input type="hidden" name="id" value="<?= $mahasiswa['id']; ?>">
+
 			<label for="nama">Nama :</label>
 			<input type="text" name="nama" id="nama" value="<?= $mahasiswa['nama']; ?>" placeholder="Masukan nama anda" autocomplete="off" required>
 

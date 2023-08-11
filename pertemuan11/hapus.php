@@ -4,6 +4,7 @@ require "function.php";
 
 if (!isset($_GET["id"])) {
 	header("Location: index.php");
+	exit;
 }
 
 if (hapus($_GET["id"]) > 0) {

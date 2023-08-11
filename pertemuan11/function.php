@@ -46,6 +46,30 @@ function tambah($data) {
 }
 
 
+function ubah($data) {
+	$koneksi = koneksi();
+
+	// Sanitasi data dari SQLi
+	$nama = mysqli_real_escape_string($koneksi, $data["nama"]);
+	$nrp = mysqli_real_escape_string($koneksi, $data["nrp"]);
+	$jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
+	$email = mysqli_real_escape_string($koneksi, $data["email"]);
+	$gambar = mysqli_real_escape_string($koneksi, $data["gambar"]);
+	$id = mysqli_real_escape_string($koneksi, $data["id"]);
+
+	$query = sprintf("UPDATE mahasiswa SET
+		nama='%s', nrp='%s', email='%s', 
+		jurusan='%s', gambar='%s'
+		WHERE id='%d'",
+		$nama, $nrp, $email, $jurusan, $gambar, $id);
+
+	mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));	
+
+	return mysqli_affected_rows($koneksi);
+
+}
+
+
 function hapus($id) {
 	$koneksi = koneksi();
 	$id = mysqli_real_escape_string($koneksi, $id);

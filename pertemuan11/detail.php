@@ -4,6 +4,7 @@ require "function.php";
 // Jika parameter id tidak ada
 if (!isset($_GET["id"])) {
 	header("Location: index.php");
+	exit;
 }
 
 $id = mysqli_real_escape_string(koneksi(), $_GET["id"]);
