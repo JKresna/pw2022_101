@@ -1,11 +1,18 @@
 <?php 
+session_start();
+
+if (!isset($_SESSION["login"])) {
+  header("Location: login.php");
+  exit;
+}
+
 require "function.php";
 
 $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
 
 // Jika tombol cari di klik
 if (isset($_POST["cari"])) {
-    $mahasiswa = cari($_POST["keyword"]);
+  $mahasiswa = cari($_POST["keyword"]);
 }
 ?>
 <!DOCTYPE html>
@@ -17,6 +24,8 @@ if (isset($_POST["cari"])) {
 	<title>Daftar Mahasiswa</title>
 </head>
 <body>
+
+  <a href="logout.php" class="logout">Logout</a>
 
 	<h1>Daftar Mahasiswa</h1>
 
@@ -46,20 +55,19 @@ if (isset($_POST["cari"])) {
         </tr>
         <?php endif; ?>  
 
-		<?php $i = 1;
-			foreach($mahasiswa as $m) : ?>
-		<tr>
-			<td><?= $i++; ?></td>
-			<td class="img">
-				<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
-			</td>
-			<td><?= htmlspecialchars($m["nama"]); ?></td>
-			<td>
-				<a href="detail.php?id=<?= $m['id'] ?>">Lihat Detail</a>
-			</td>
-		</tr>
-		<?php endforeach; ?>
-
+	<?php $i = 1;
+	foreach($mahasiswa as $m) : ?>
+	<tr>
+		<td><?= $i++; ?></td>
+		<td class="img">
+			<img src="img/<?= htmlspecialchars($m['gambar']); ?>" alt="Gambar <?= htmlspecialchars($m['nama']); ?>">
+		</td>
+		<td><?= htmlspecialchars($m["nama"]); ?></td>
+		<td>
+			<a href="detail.php?id=<?= $m['id'] ?>">Lihat Detail</a>
+		</td>
+	</tr>
+	<?php endforeach; ?>
 	</table>
 
 </body>

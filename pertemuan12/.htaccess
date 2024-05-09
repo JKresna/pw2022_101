@@ -1,0 +1,2 @@
+RedirectMatch 403 /img/?$
+RedirectMatch 403 /css/?$

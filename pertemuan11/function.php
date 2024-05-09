@@ -2,7 +2,7 @@
 
 function koneksi() {
 	// Koneksi ke DBMS & Pilih DB
-	return mysqli_connect("localhost", "root", "", "phpdasar");
+	return mysqli_connect("0.0.0.0", "root", "", "phpdasar");
 }
 	
 function query($query) {
@@ -18,7 +18,7 @@ function query($query) {
 	// Ubah data ke dalam Array
 	$rows = [];
 
-	while($row = mysqli_fetch_assoc($hasil)) {
+	while ($row = mysqli_fetch_assoc($hasil)) {
 		$rows[] = $row;
 	}
 
@@ -66,7 +66,6 @@ function ubah($data) {
 	mysqli_query($koneksi, $query) or die(mysqli_error($koneksi));	
 
 	return mysqli_affected_rows($koneksi);
-
 }
 
 
@@ -77,4 +76,25 @@ function hapus($id) {
 	mysqli_query($koneksi, "DELETE FROM mahasiswa WHERE id='$id'") or die(mysqli_error($koneksi));
 
 	return mysqli_affected_rows($koneksi);
+}
+
+
+function cari($keyword) {
+    $koneksi = koneksi();
+    $keyword = mysqli_real_escape_string($koneksi, $keyword);
+    
+    $query = "SELECT * FROM mahasiswa WHERE
+            nama LIKE '%$keyword%' OR
+            nrp LIKE '%$keyword%' OR
+            jurusan LIKE '%$keyword%' OR
+            email LIKE '%$keyword%'";
+            
+    $hasil = mysqli_query($koneksi, $query);
+    $rows = [];
+    
+    while ($row = mysqli_fetch_assoc($hasil)) {
+        $rows[] = $row;
+    }
+    
+    return $rows;
 }

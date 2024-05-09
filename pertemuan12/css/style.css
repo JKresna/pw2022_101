@@ -17,3 +17,15 @@ img {
     color: red;
     font-style: italic;
 }
+
+.logout {
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+	font-weight: bold;
+	border-radius: 5px;
+  width: 75px;
+	display: block;
+	padding: 5px;
+	background-color: #0f6;
+}

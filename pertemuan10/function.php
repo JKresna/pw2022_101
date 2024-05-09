@@ -2,7 +2,7 @@
 
 function koneksi() {
 	// Koneksi ke DBMS & Pilih DB
-	return mysqli_connect("localhost", "root", "", "phpdasar");
+	return mysqli_connect("0.0.0.0", "root", "G4r0x@17", "phpdasar");
 }
 	
 function query($query) {
