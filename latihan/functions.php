@@ -76,3 +76,24 @@ function hapus($id) {
 
   return mysqli_affected_rows($koneksi);
 }
+
+
+function cari($keyword) {
+  $koneksi = koneksi();
+
+  $keyword = mysqli_real_escape_string($koneksi, $keyword);
+  $query = "SELECT * FROM mahasiswa WHERE
+	  nama LIKE '%$keyword%' ||
+	  jurusan LIKE '%$keyword%' ||
+	  nrp LIKE '%$keyword%' ||
+	  email LIKE '%$keyword%'";
+
+  $hasil = mysqli_query($koneksi, $query);
+  $rows = [];
+
+  while ($row = mysqli_fetch_assoc($hasil)) {
+    $rows[] = $row;
+  }
+
+  return $rows;
+}

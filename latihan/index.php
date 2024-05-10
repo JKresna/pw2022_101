@@ -2,6 +2,10 @@
 require "functions.php";
 
 $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
+
+if (isset($_POST["cari"])) {
+  $mahasiswa = cari($_POST["keyword"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -18,7 +22,28 @@ $mahasiswa = query("SELECT * FROM mahasiswa ORDER BY id DESC");
   <a href="tambah.php">Tambah Mahasiswa</a>
   <br><br>
 
+  <form method="post">
+    <input type="text" name="keyword" placeholder="Masukan pencarian.." size="30" autocomplete="off" autofocus>
+    <button type="submit" name="cari">Cari</button>
+  </form>
+  <br>
+
   <table>
+
+  <tr>
+    <th>#</th>
+    <th>Gambar</th>
+    <th>Nama</th>
+    <th>Aksi</th>
+  </tr>
+
+  <?php if (empty($mahasiswa)) : ?>
+  <tr>
+    <td colspan="4">
+      <p class="error">Mahasiswa tidak ditemukan!</p>
+    </td>
+  </tr>
+  <?php endif; ?>
 
   <?php $i = 1; foreach($mahasiswa as $m) : ?>
   <tr>
