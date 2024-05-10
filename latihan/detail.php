@@ -6,7 +6,7 @@ if (!isset($_SESSION["login"])) {
   exit;
 }
 
-require "function.php";
+require "functions.php";
 
 // Jika parameter id tidak ada
 if (!isset($_GET["id"])) {
