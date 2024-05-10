@@ -97,3 +97,28 @@ function cari($keyword) {
 
   return $rows;
 }
+
+
+function login($data) {
+  $koneksi = koneksi();
+
+  $username = mysqli_real_escape_string($koneksi, $data["username"]);
+  $password = mysqli_real_escape_string($koneksi, $data["password"]);
+
+  // Cek apakah Username ada di Tabel users
+  if ($user = query("SELECT * FROM users WHERE username='$username'")) {
+    // Cek Password, cocokan Password dengan Hash-nya
+    if (password_verify($password, $user["password"])) {
+      // Buat Session login
+      $_SESSION["login"] = true;
+      
+      header("Location: index.php");
+      exit;
+    }
+  }
+
+  return [
+    "error" => true,
+    "pesan_error" => "Username/Password Anda Salah!"
+  ];
+}
