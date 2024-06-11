@@ -24,5 +24,5 @@ keyword.addEventListener("keyup", function() {
   // 2. Fetch
   fetch("ajax/ajax_cari.php?keyword=" + keyword.value) 
     .then((response) => response.text())
-    .then((response) => (container.innerHTML = response))
+    .then((response) => (container.innerHTML = response));
 });
