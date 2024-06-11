@@ -1,0 +1,31 @@
+table,th,td {
+	border-collapse: collapse;
+	border: 1px solid #000;		
+	padding: 10px;
+}
+
+img {
+	width: 50px;
+	height: 50px;
+}
+
+.img {
+	text-align: center;
+}
+
+.error {
+    color: red;
+    font-style: italic;
+}
+
+.logout {
+  color: #333;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 75px;
+  display: block;
+  padding: 5px;
+  background-color: #0f6;
+}
