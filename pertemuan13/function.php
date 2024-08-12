@@ -26,6 +26,61 @@ function query($query) {
 }
 
 
+function upload() {
+  $nama_file = $_FILES["gambar"]["name"];
+  $type = $_FILES["gambar"]["type"];
+  $error = $_FILES["gambar"]["error"];
+  $size = $_FILES["gambar"]["size"];
+  $tmp_name = $_FILES["gambar"]["tmp_name"];
+
+  // Jika gambar tidak di upload
+  if ($error == 4) {
+    echo "<script>
+	  alert('Anda belum mengupload gambar!');
+	</script>";
+    return false;
+  }
+
+  // Jika ektensi file yang di upload tidak valid
+  $ekstensi_valid = ["jpg", "jpeg", "png", "gif"];
+  $ekstensi = explode(".", $nama_file);
+  $ekstensi = strtolower(end($ekstensi));
+
+  if (!in_array($ekstensi, $ekstensi_valid)) {
+    echo "<script>
+	  alert('Yang anda upload bukan gambar!');
+	</script>";
+    return false;  
+  }
+
+  // Pengecekan tipe file
+  if ($type != "image/jpeg" && $type != "image/png" && $type != "image/gif") {
+    echo "<script>
+	  alert('Yang anda upload bukan gambar!');
+	</script>";
+    return false;   
+  }
+
+  // Cek ukuran gambar
+  // Max 3MB = 3jt byte
+  if ($size > 3000000) {
+    echo "<script>
+	  alert('Gambar tidak boleh lebih besar dari 3mb!');
+	</script>";
+    return false;   
+  }
+
+  
+  // Upload file
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= ".";
+  $nama_file_baru .= $ekstensi;
+
+  move_uploaded_file($tmp_name, "img/" . $nama_file_baru);
+  return $nama_file_baru;
+}
+
+
 function tambah($data) {
   $koneksi = koneksi();
 
@@ -34,7 +89,14 @@ function tambah($data) {
   $nrp = mysqli_real_escape_string($koneksi, $data["nrp"]);
   $jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
   $email = mysqli_real_escape_string($koneksi, $data["email"]);
-  $gambar = mysqli_real_escape_string($koneksi, $data["gambar"]);
+  //$gambar = mysqli_real_escape_string($koneksi, $data["gambar"]);
+
+  // Upload gambar
+  $gambar = upload();
+
+  if (!$gambar) {
+    return false;
+  }
 	
   $query = sprintf("INSERT INTO mahasiswa VALUES(NULL,
 	   '%s', '%s', '%s', '%s', '%s')",
