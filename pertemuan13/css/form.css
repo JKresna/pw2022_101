@@ -57,3 +57,9 @@ button {
   color: #f00;
   font-style: italic;
 }
+
+.img-preview {
+  display: block;
+  width: 100px;
+  margin: 10px auto 30px;
+}

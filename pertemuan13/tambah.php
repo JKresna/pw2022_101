@@ -31,8 +31,8 @@ if (isset($_POST["tambah"]) && (
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="css/form.css">
   <title>Tambah Mahasiswa</title>
+  <link rel="stylesheet" href="css/form.css">
 </head>
 <body>
 
@@ -54,11 +54,14 @@ if (isset($_POST["tambah"]) && (
     <input type="text" name="jurusan" id="jurusan" placeholder="Masukan jurusan anda" autocomplete="off" required>
 
     <label for="gambar">Gambar :</label>
-    <input type="file" name="gambar" id="gambar">
+    <input type="file" name="gambar" id="gambar" class="gambar" onchange="previewImage()">
+
+    <img src="img/nophoto.png" class="img-preview">
 
     <button type="submit" name="tambah">Tambah</button>
   </form>
 </div>
 
+<script src="js/form.js"></script>
 </body>
 </html>

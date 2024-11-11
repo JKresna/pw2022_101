@@ -33,12 +33,14 @@ function upload() {
   $size = $_FILES["gambar"]["size"];
   $tmp_name = $_FILES["gambar"]["tmp_name"];
 
-  // Jika gambar tidak di upload
+  // Jika gambar tidak di upload gunakan foto default
   if ($error == 4) {
-    echo "<script>
-	  alert('Anda belum mengupload gambar!');
-	</script>";
-    return false;
+    // Jika user tidak upload gambar tapi masih
+    // mempunyai gambar lama, maka pakai gambar lama
+    if (isset($_POST["gambar_lama"])) {
+      return $_POST["gambar_lama"];
+    }
+    return "nophoto.png";
   }
 
   // Jika ektensi file yang di upload tidak valid
@@ -116,8 +118,14 @@ function ubah($data) {
   $nrp = mysqli_real_escape_string($koneksi, $data["nrp"]);
   $jurusan = mysqli_real_escape_string($koneksi, $data["jurusan"]);
   $email = mysqli_real_escape_string($koneksi, $data["email"]);
-  $gambar = mysqli_real_escape_string($koneksi, $data["gambar"]);
+  //$gambar_lama = mysqli_real_escape_string($koneksi, $data["gambar_lama"]);
   $id = mysqli_real_escape_string($koneksi, $data["id"]);
+
+  $gambar = upload();
+
+  if (!$gambar) {
+    return false;
+  }
 
   $query = sprintf("UPDATE mahasiswa SET
 		nama='%s', nrp='%s', email='%s', 
@@ -134,7 +142,15 @@ function ubah($data) {
 function hapus($id) {
   $koneksi = koneksi();
   $id = mysqli_real_escape_string($koneksi, $id);
-	
+
+  // Hapus gambar dari mahasiswa
+  $mhs = query("SELECT * FROM mahasiswa WHERE id='$id'");
+
+  if ($mhs["gambar"] != "nophoto.png") {
+      unlink("img/" . $mhs["gambar"]);
+  }
+
+  // Hapus mahasiswa
   mysqli_query($koneksi, "DELETE FROM mahasiswa WHERE id='$id'") or die(mysqli_error($koneksi));
 
   return mysqli_affected_rows($koneksi);
